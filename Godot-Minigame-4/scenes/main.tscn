@@ -23,7 +23,20 @@ transform = Transform3D(1, 0, 0, 0, 0.83821404, 0.5453415, 0, -0.5453415, 0.8382
 transform = Transform3D(1, 0, 0, 0, 0.3097971, 0.9508027, 0, -0.9508027, 0.3097971, 0, 2.806101, 0)
 
 [node name="NPC" parent="." instance=ExtResource("3_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9940548, 1.5117404, -4.794055)
+transform = Transform3D(-0.99823153, 0, 0.05944575, 0, 1, 0, -0.05944575, 0, -0.99823153, 2.7059467, 1.5117404, -4.794055)
+
+[node name="NPC2" parent="." instance=ExtResource("3_sugp2")]
+transform = Transform3D(-0.99823153, 0, 0.05944575, 0, 1, 0, -0.05944575, 0, -0.99823153, -0.63013196, 1.5117404, -4.794055)
+throwPower = 9.505
+speed = 1.2650000000000001
+throwFrequency = 6.02
+
+[node name="NPC3" parent="." instance=ExtResource("3_sugp2")]
+transform = Transform3D(-0.99823153, 0, 0.05944575, 0, 1, 0, -0.05944575, 0, -0.99823153, -5.189558, 1.5117404, -4.794055)
+throwPower = 21.27
+speed = 1.465
+maxDistance = 24.89
+throwFrequency = 3.885
 
 [node name="UI" type="BoxContainer" parent="."]
 offset_right = 323.0

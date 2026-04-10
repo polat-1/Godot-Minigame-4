@@ -1,10 +1,10 @@
 extends RigidBody3D
 
 # step 12: make these all tune-able in the Inspector
-var throwPower: float = 1.0
-var speed: float = 1.0
-var maxDistance: float = 2.0
-var throwFrequency: float = 3.0
+@export var throwPower: float = 15.0
+@export var speed: float = 1.0
+@export var maxDistance: float = 25.0
+@export var throwFrequency: float = 3.0
 
 @onready var ballScene = preload("res://scenes/ball.tscn")
 
@@ -14,18 +14,16 @@ var distance: float = 0.0
 var xDir: float = 1.0
 
 # step 13: add a time variale
-
+var _timer = 0
 
 
 # step 4: uncomment the function below
-"""
 func _ready() -> void:
 	contact_monitor = true
 	max_contacts_reported = 3
 	
 	ball = get_node("Ball")
 	ball._pickup()
-"""
 
 
 func _physics_process(delta: float) -> void:
@@ -39,7 +37,11 @@ func _physics_process(delta: float) -> void:
 		
 	# step 14: use the delta variable to keep a timer
 	# when the timer runs out, have the NPC throw a ball
+	_timer += delta
 	
+	if _timer > throwFrequency:
+		_throw_ball()
+		_timer = 0
 
 func _throw_ball() -> void:
 	if ball == null:
@@ -62,11 +64,15 @@ func _throw_ball() -> void:
 
 
 # step 15: uncomment the function below
-"""
 func _on_body_shape_entered(_body_rid: RID, body: Node, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body is Ball:
 		_hitByBall()
-"""
 
 # step 16: create the _hitByBall() function below here
-	
+func _hitByBall() -> void:
+	var player = get_node("/root/Main/Player")
+	var _points = player.points
+	_points += 1
+	var pointsLabel = get_node("/root/Main/UI/PointsLabel")
+	pointsLabel.text = str(_points)
+	print(_points)
